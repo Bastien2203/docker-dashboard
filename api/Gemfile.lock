@@ -1,0 +1,32 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    base64 (0.2.0)
+    docker-api (2.4.0)
+      excon (>= 0.64.0)
+      multi_json
+    excon (0.109.0)
+    multi_json (1.15.0)
+    mustermann (3.0.3)
+      ruby2_keywords (~> 0.0.1)
+    rack (2.2.10)
+    rack-protection (3.2.0)
+      base64 (>= 0.1.0)
+      rack (~> 2.2, >= 2.2.4)
+    ruby2_keywords (0.0.5)
+    sinatra (3.2.0)
+      mustermann (~> 3.0)
+      rack (~> 2.2, >= 2.2.4)
+      rack-protection (= 3.2.0)
+      tilt (~> 2.0)
+    tilt (2.6.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  docker-api
+  sinatra
+
+BUNDLED WITH
+   1.17.2

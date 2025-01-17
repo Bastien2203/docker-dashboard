@@ -1,0 +1,16 @@
+services:
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    container_name: docker-manager-api
+    volumes:
+      - ./api:/usr/src/app
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "4567:4567"
+    restart: always
+
+volumes:
+  docker_sock:
+    external: true
