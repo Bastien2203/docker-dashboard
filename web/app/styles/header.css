@@ -1,4 +1,8 @@
 header {
-  background-color: rgb(9 11 13);
-  padding: 1em;
+  margin-left: 240px;
+  background: linear-gradient(90deg, rgb(10 27 78), rgb(13 41 133));
+  padding: 0.2em;
+  padding-inline: 1em;
+  font-size: 0.9em;
+  font-weight: 500;
 }

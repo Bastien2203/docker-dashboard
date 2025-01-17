@@ -1,5 +1,7 @@
 require 'sinatra'
 require 'docker'
+require 'yaml'
+
 
 Docker.url = 'unix:///var/run/docker.sock'
 
@@ -31,6 +33,21 @@ get '/containers' do
       network_settings: container.info['NetworkSettings'],
       mounts: container.info['Mounts']
       
+    }
+  end.to_json
+end
+
+
+## get all docker-compose in /usr/src/services
+get '/services' do 
+  headers 'Access-Control-Allow-Origin' => '*'
+  content_type :json
+  services = Dir.glob('/usr/src/services/*')
+  services.map do |service|
+    docker_compose = File.read("#{service}/docker-compose.yml")
+    {
+      name: service.split('/').last,
+      docker_compose: YAML.load(docker_compose)
     }
   end.to_json
 end

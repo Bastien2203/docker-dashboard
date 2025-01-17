@@ -4,10 +4,13 @@
   <h1>Docker Dashboard</h1>
 </header>
 
+<nav>
+  <LinkTo @route="containers" class="nav-item">Containers</LinkTo>
+  <LinkTo @route="services" class="nav-item">Services</LinkTo>
+</nav>
+
 <main>
-  <ContainerList
-    @containers={{this.model}}
-    @onRefresh={{this.refreshContainers}}
-  />
+  {{outlet}}
 </main>
+
 

@@ -3,13 +3,13 @@ import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 
 export default class Container extends Component {
-  @service container;
+  @service containers;
 
   @action async stopContainer() {
     if (!this.isRunning) {
       return;
     }
-    await this.container.stopContainer(this.args.container.id);
+    await this.containers.stopContainer(this.args.container.id);
     this.args.onRefresh();
   }
 
@@ -17,7 +17,7 @@ export default class Container extends Component {
     if (this.isRunning) {
       return;
     }
-    await this.container.startContainer(this.args.container.id);
+    await this.containers.startContainer(this.args.container.id);
     this.args.onRefresh();
   }
 

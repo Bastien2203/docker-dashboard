@@ -1,0 +1,27 @@
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 200px;
+  background-color: rgb(9 11 13);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+nav .nav-item {
+  padding: 0.5em;
+  border-radius: 0.2em;
+  cursor: pointer;
+  text-decoration: none;
+  color:inherit;
+}
+
+nav .nav-item:hover {
+  background-color: rgb(159 211 255 / 10%);
+}
+
+nav .nav-item.active {
+  background-color: rgb(159 211 255 / 20%);
+}

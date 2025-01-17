@@ -9,7 +9,7 @@ COPY Gemfile Gemfile.lock ./
 # Install gems
 RUN bundle install
 
-COPY ../api .
+COPY . .
 
 EXPOSE 4567
 

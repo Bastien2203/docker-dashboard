@@ -1,0 +1,26 @@
+services:
+  hello-world:
+    image: hello-world
+    container_name: hello-world
+    restart: always
+    ports:
+      - 3000:4444
+    networks:
+      - test1
+
+  hello2:
+    image: hello-world
+    container_name: hello2
+    restart: always
+    ports:
+      - 3001:4444
+    networks:
+      - test1
+    depends_on:
+      - hello-world
+
+networks:
+  test1:
+    external: true
+
+

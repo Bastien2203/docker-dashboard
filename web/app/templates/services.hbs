@@ -1,0 +1,127 @@
+{{page-title "Services"}}
+
+<div class="services">
+  {{#each @model as |config|}}
+    <details class="service-config">
+      <summary class="config-name p-1">{{config.name}}</summary>
+
+      <div class="p-1">
+        <div class="services-list">
+          <h3>Services</h3>
+          <ul>
+            {{#each (keys config.docker_compose.services) as |serviceName|}}
+              <li class="service-item">
+                <strong>{{serviceName}}</strong>
+                <ul class="service-details">
+                  <li><strong>Image:</strong> {{access config.docker_compose.services serviceName "image"}}</li>
+                  <li><strong>Container Name:</strong> {{access config.docker_compose.services serviceName
+                                                                "container_name"}}</li>
+                  <li><strong>Restart Policy:</strong> {{access config.docker_compose.services serviceName "restart"}}
+                  </li>
+
+                  {{#if (access config.docker_compose.services serviceName "ports")}}
+                    <li><strong>Ports:</strong>
+                      <ul>
+                        {{#each (access config.docker_compose.services serviceName "ports") as |port|}}
+                          <li>{{port}}</li>
+                        {{/each}}
+                      </ul>
+                    </li>
+                  {{/if}}
+
+                  {{#if (access config.docker_compose.services serviceName "environment")}}
+                    <li><strong>Environment:</strong>
+                      <ul>
+                        {{#each (access config.docker_compose.services serviceName "environment") as |env|}}
+                          <li>{{env}}</li>
+                        {{/each}}
+                      </ul>
+                    </li>
+                  {{/if}}
+
+                  {{#if (access config.docker_compose.services serviceName "volumes")}}
+                    <li><strong>Volumes:</strong>
+                      <ul>
+                        {{#each (access config.docker_compose.services serviceName "volumes") as |volume|}}
+                          <li>{{volume}}</li>
+                        {{/each}}
+                      </ul>
+                    </li>
+                  {{/if}}
+
+                  {{#if (access config.docker_compose.services serviceName "depends_on")}}
+                    <li><strong>Depends On:</strong>
+                      <ul>
+                        {{#each (access config.docker_compose.services serviceName "depends_on") as |dep|}}
+                          <li>{{dep}}</li>
+                        {{/each}}
+                      </ul>
+                    </li>
+                  {{/if}}
+
+                  {{#if (access config.docker_compose.services serviceName "links")}}
+                    <li><strong>Links:</strong>
+                      <ul>
+                        {{#each (access config.docker_compose.services serviceName "links") as |link|}}
+                          <li>{{link}}</li>
+                        {{/each}}
+                      </ul>
+                    </li>
+                  {{/if}}
+
+                  {{#if (access config.docker_compose.services serviceName "networks")}}
+                    <li><strong>Networks:</strong>
+                      <ul>
+                        {{#each (access config.docker_compose.services serviceName "networks") as |network|}}
+                          <li>{{network}}</li>
+                        {{/each}}
+                      </ul>
+                    </li>
+                  {{/if}}
+                </ul>
+              </li>
+            {{/each}}
+          </ul>
+        </div>
+        <div class="networks-list">
+          <h3>Networks</h3>
+          <ul>
+            {{#each (keys config.docker_compose.networks) as |networkName|}}
+              <li class="network-item">
+                <strong>{{networkName}}</strong>
+                <ul class="network-details">
+                  {{# if (access config.docker_compose.networks networkName "driver")}}
+                    <li><strong>Driver:</strong> {{access config.docker_compose.networks networkName "driver"}}</li>
+                  {{/if}}
+                  {{# if (access config.docker_compose.networks networkName "external")}}
+                    <li><strong>External:</strong> {{access config.docker_compose.networks networkName "external"}}</li>
+                  {{/if}}
+                  {{# if (access config.docker_compose.networks networkName "attachable")}}
+                    <li><strong>Attachable:</strong> {{access config.docker_compose.networks networkName "attachable"}}
+                    </li>
+                  {{/if}}
+                  {{# if (access config.docker_compose.networks networkName "ipam")}}
+                    <li><strong>IPAM:</strong> {{access config.docker_compose.networks networkName "ipam"}}</li>
+                  {{/if}}
+                  {{# if (access config.docker_compose.networks networkName "internal")}}
+                    <li><strong>Internal:</strong> {{access config.docker_compose.networks networkName "internal"}}</li>
+                  {{/if}}
+                  {{# if (access config.docker_compose.networks networkName "labels")}}
+                    <li><strong>Labels:</strong>
+                      <ul>
+                        {{#each (access config.docker_compose.networks networkName "labels") as |label|}}
+                          <li>{{label}}</li>
+                        {{/each}}
+                      </ul>
+                    </li>
+                  {{/if}}
+                </ul>
+              </li>
+            {{/each}}
+          </ul>
+
+        </div>
+      </div>
+    </details>
+  {{/each}}
+</div>
