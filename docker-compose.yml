@@ -3,13 +3,22 @@ services:
     build:
       context: ./api
       dockerfile: Dockerfile
-    container_name: docker-manager-api
+    container_name: docker-dashboard-api
     volumes:
       - ./api:/usr/src/app
       - ./services:/usr/src/services
       - /var/run/docker.sock:/var/run/docker.sock
     ports:
       - "4567:4567"
+    restart: always
+
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    container_name: docker-dashboard-web
+    ports:
+      - "8080:80"
     restart: always
 
 volumes:

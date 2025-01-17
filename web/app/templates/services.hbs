@@ -3,7 +3,14 @@
 <div class="services">
   {{#each @model as |config|}}
     <details class="service-config">
-      <summary class="config-name p-1">{{config.name}}</summary>
+      <summary class="config-name p-1 flex gap-1">
+        {{#if config.running}}
+          <div class="status running"></div>
+        {{else}}
+          <div class="status stopped"></div>
+        {{/if}}
+        {{config.name}}
+      </summary>
 
       <div class="p-1">
         <div class="services-list">

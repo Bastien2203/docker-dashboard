@@ -39,17 +39,40 @@ end
 
 
 ## get all docker-compose in /usr/src/services
-get '/services' do 
+get '/services' do
   headers 'Access-Control-Allow-Origin' => '*'
   content_type :json
-  services = Dir.glob('/usr/src/services/*')
-  services.map do |service|
-    docker_compose = File.read("#{service}/docker-compose.yml")
-    {
-      name: service.split('/').last,
-      docker_compose: YAML.load(docker_compose)
-    }
-  end.to_json
+
+  containers = Docker::Container.all.map { |c| [c.info['Names'].first, c.info] }.to_h
+
+
+  services = Dir.glob('/usr/src/services/*').map do |service|
+    begin
+      file_path = File.join(service, 'docker-compose.yml')
+      next unless File.exist?(file_path)
+
+      docker_compose = YAML.safe_load(File.read(file_path), aliases: true)
+      running = true
+
+      docker_compose['services'].each do |_, service_config|
+        next unless service_config['container_name']
+
+        container = containers["/#{service_config['container_name']}"]
+        if container.nil?
+          running = false
+          break
+        end
+        running &&= container && container['State'] == 'running'
+      end
+
+      { name: File.basename(service), running: running, docker_compose: docker_compose }
+    rescue Psych::SyntaxError => e
+      puts "Error parsing YAML for #{service}: #{e.message}"
+      nil
+    end
+  end.compact
+
+  services.to_json
 end
 
 post '/containers/:id/start' do

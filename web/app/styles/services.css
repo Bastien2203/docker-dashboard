@@ -14,6 +14,11 @@
   padding: -1em;
   font-size: 1.5rem;
   color: #ff9800;
+  cursor: pointer;
+}
+
+.config-name:hover {
+  filter: brightness(1.2);
 }
 
 .services-list h3, .networks-list h3 {
