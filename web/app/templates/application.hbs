@@ -1,0 +1,13 @@
+{{page-title "Dashboard"}}
+
+<header>
+  <h1>Docker Dashboard</h1>
+</header>
+
+<main>
+  <ContainerList
+    @containers={{this.model}}
+    @onRefresh={{this.refreshContainers}}
+  />
+</main>
+

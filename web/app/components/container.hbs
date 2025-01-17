@@ -1,0 +1,46 @@
+<tr class="container">
+  <td>
+    <i class="flex-center">
+      {{#if this.isRunning}}
+        <div class="status running"></div>
+      {{else}}
+        <div class="status stopped"></div>
+      {{/if}}
+    </i>
+  </td>
+
+  <td>{{@container.name}}</td>
+
+  <td>
+    {{#if @container.ports}}
+      {{#each @container.ports as |port|}}
+        <span>{{port.PrivatePort}}:{{port.PublicPort}}</span>
+      {{/each}}
+    {{else}}
+      <span>-</span>
+    {{/if}}
+  </td>
+
+  <td>
+    {{@container.status}}
+  </td>
+
+
+
+  <td class="actions flex-center gap-1">
+    <button
+      type="button"
+      class={{if this.isRunning "button secondary disabled" "button primary"}}
+      {{ on "click" this.startContainer}}
+    >
+      Start
+    </button>
+    <button
+      type="button"
+      class={{if this.isRunning "button danger" "button secondary disabled"}}
+      {{ on "click" this.stopContainer}}
+    >
+      Stop
+    </button>
+  </td>
+</tr>

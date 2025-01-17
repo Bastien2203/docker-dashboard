@@ -2,7 +2,7 @@ services:
   api:
     build:
       context: ./api
-      dockerfile: Dockerfile
+      dockerfile: api/Dockerfile
     container_name: docker-manager-api
     volumes:
       - ./api:/usr/src/app

@@ -1,0 +1,17 @@
+.status {
+  width: 1em;
+  height: 1em;
+  border-radius: 10em;
+}
+
+.status.pending {
+  background-color: #ffc107;
+}
+
+.status.running {
+  background-color: #28a745;
+}
+
+.status.stopped {
+  background-color: #dc3545;
+}

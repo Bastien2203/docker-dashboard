@@ -1,0 +1,51 @@
+/* Ember supports plain CSS out of the box. More info: https://cli.emberjs.com/release/advanced-use/stylesheets/ */
+@import url("header.css");
+@import url("button.css");
+@import url("container.css");
+@import url("status.css");
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: Inter, sans-serif;
+  color: rgb(252, 252, 253);
+}
+
+body {
+  background-color: rgb(17, 21, 26);
+}
+
+main {
+  padding: 1em;
+  display: flex;
+  justify-content: center;
+}
+
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+}
+
+.flex-end {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gap-1 {
+  gap: 1em;
+}
+
+
+

@@ -1,0 +1,31 @@
+<div class="containers">
+
+  <div class="flex-between">
+    <h2>
+      Containers
+    </h2>
+    <button class="button info" type="button" {{ on "click" @onRefresh}}>
+      Refresh
+    </button>
+  </div>
+
+  <table>
+    <thead>
+    <tr>
+      <th class="status-col">State</th>
+      <th>Name</th>
+      <th>Port(s)</th>
+      <th>Status</th>
+      <th class="actions-col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each @containers as |container|}}
+      <Container
+        @onRefresh={{@onRefresh}}
+        @container={{container}}
+      />
+    {{/each}}
+    </tbody>
+  </table>
+</div>
